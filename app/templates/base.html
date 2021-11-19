@@ -8,8 +8,22 @@
       {% endif %}
     </head>
     <body>
-        <div>Microblog: <a href="/index">Home</a></div>
+        <div>Microblog:
+          <a href="/">Home</a>
+          <a href="/login">Login</a>
+        </div>
         <hr>
+        <!--get_flashed_messages() поступает из Flask и возвращает список всех сообщений, 
+        которые были зарегистрированы в flash() ранее-->
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul>
+          {% for message in messages %}
+          <li>{{message}}</li>
+          {% endfor%}
+        </ul>
+        {% endif %}
+        {% endwith %}
         {% block content %}{% endblock %}
     </body>
 </html>
